@@ -2,6 +2,7 @@ package org.hirusha.library.Service;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import org.hirusha.library.DTO.BookRequest;
 import org.hirusha.library.Exception.BookNotFoundException;
 import org.hirusha.library.Model.Book;
 import org.hirusha.library.Model.User;
@@ -40,13 +41,13 @@ public class BookService {
         return books;
     }
 
-    public Book addBook(Book book){
-        if(bookRepo.existsBookByIsbn(book.getIsbn())){
-            Book existingBook = bookRepo.findById(book.getIsbn()).orElseThrow(BookNotFoundException::new);
-            existingBook.updateQuantity(book.getQuantity());
+    public Book addBook(BookRequest request){
+        if(bookRepo.existsBookByIsbn(request.isbn())){
+            Book existingBook = bookRepo.findById(request.isbn()).orElseThrow(BookNotFoundException::new);
+            existingBook.updateQuantity(request.quantity());
             return bookRepo.save(existingBook);
         }
-        return bookRepo.save(book);
+        return bookRepo.save(request);
     }
 
     public Book updateBook(int isbn, Book updatedBook){
