@@ -19,10 +19,7 @@ public class IssueAndReturnBook {
     private User member;
 
     @ManyToOne
-    private User librarian;
-
-    @ManyToOne
-    private User staff;
+    private User issuer;
 
     private LocalDate issueDate;
     private LocalDate returnDate;

@@ -24,7 +24,7 @@ public class BookService {
     public Book getBookByIsbn(int isbn){
         return bookRepo.findById(isbn).orElseThrow(() -> new RuntimeException("Book not found."));
     }
-//
+
 //    public Optional<Book> getBookByIsbn(int isbn){
 //        return bookRepo.findById(isbn);
 //    }
@@ -47,20 +47,31 @@ public class BookService {
             existingBook.updateQuantity(request.quantity());
             return bookRepo.save(existingBook);
         }
-        return bookRepo.save(request);
+        Book book = new Book();
+        book.setIsbn(request.isbn());
+        book.setTitle(request.title());
+        book.setQuantity(request.quantity());
+        book.setGenre(request.genre());
+        book.setAuthor(request.author());
+        return bookRepo.save(book);
     }
 
-    public Book updateBook(int isbn, Book updatedBook){
+    public Book updateBook(int isbn, BookRequest request){
         Book book = bookRepo.findById(isbn).orElseThrow(BookNotFoundException::new);
         if(book != null){
-            book.setGenre(updatedBook.getGenre());
-            book.setTitle(updatedBook.getTitle());
-            book.setAuthor(updatedBook.getAuthor());
+            book.setGenre(request.genre());
+            book.setTitle(request.title());
+            book.setAuthor(request.author());
+            return bookRepo.save(book);
         }
-        return book;
+        return null;
     }
 
     public void deleteBook(int isbn){
         bookRepo.deleteById(isbn);
+    }
+
+    public int getAvailableQuantity(int isbn){
+        return bookRepo.getQuantity(isbn);
     }
 }
