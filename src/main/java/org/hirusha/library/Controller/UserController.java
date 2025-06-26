@@ -20,7 +20,7 @@ public class UserController {
         return ResponseEntity.ok(userService.createUser(userRequest));
     }
 
-    @GetMapping
+    @GetMapping()
     public ResponseEntity<List<User>> viewUsers(){
         return ResponseEntity.ok(userService.viewUsers());
     }

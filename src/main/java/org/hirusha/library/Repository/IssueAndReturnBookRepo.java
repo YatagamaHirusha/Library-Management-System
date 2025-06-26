@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface IssueAndReturnBookRepo extends JpaRepository<IssueAndReturnBook, Integer> {
-    Optional<IssueAndReturnBook> findByMember(User member);
+    Optional<IssueAndReturnBook> findByMemberAndReturnDateIsNull(User member);
 
     @Query("SELECT irb.book FROM IssueAndReturnBook irb WHERE irb.returnDate IS null")
     List<Book> findAllIssueBooks();

@@ -38,7 +38,7 @@ public class IssueAndReturnBookService {
 
     public ResponseEntity<?> returnBook(ReturnRecord returnRecord) {
         User member = userRepo.findByUsername(returnRecord.username()).orElseThrow(UserNotFoundException::new);
-        IssueAndReturnBook record = issueAndReturnBookRepo.findByMember(member).orElseThrow(NoRecordFound::new);
+        IssueAndReturnBook record = issueAndReturnBookRepo.findByMemberAndReturnDateIsNull(member).orElseThrow(NoRecordFound::new);
         record.setReturnDate(LocalDate.now());
         record.getBook().updateQuantity(1);
         return ResponseEntity.ok(issueAndReturnBookRepo.save(record));
