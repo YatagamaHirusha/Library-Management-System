@@ -47,6 +47,14 @@ public class IssueAndReturnBookService {
     public ResponseEntity<List<Book>> viewIssueBooks(){
         return ResponseEntity.ok(issueAndReturnBookRepo.findAllIssueBooks());
     }
+
+    public long countBooksToBeReturned(){
+        return issueAndReturnBookRepo.countBooksToBeReturned();
+    }
+
+    public List<IssueAndReturnBook> viewActiveIssueRecords() {
+        return issueAndReturnBookRepo.findAllActiveIssueRecords();
+    }
 }
 
 

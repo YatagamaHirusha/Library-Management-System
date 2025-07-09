@@ -14,4 +14,10 @@ public interface IssueAndReturnBookRepo extends JpaRepository<IssueAndReturnBook
 
     @Query("SELECT irb.book FROM IssueAndReturnBook irb WHERE irb.returnDate IS null")
     List<Book> findAllIssueBooks();
+
+    @Query("SELECT COUNT(irb) FROM IssueAndReturnBook irb WHERE irb.returnDate IS null")
+    Long countBooksToBeReturned();
+
+    @Query("SELECT irb FROM IssueAndReturnBook irb WHERE irb.returnDate IS null")
+    List<IssueAndReturnBook> findAllActiveIssueRecords();
 }

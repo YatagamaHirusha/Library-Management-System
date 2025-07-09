@@ -24,7 +24,17 @@ public class IssueAndReturnBookController {
     }
 
     @GetMapping
-    public ResponseEntity<?> viewIssueBooks(@RequestBody ReturnRecord returnRecord){
+    public ResponseEntity<?> viewIssueBooks(){
         return ResponseEntity.ok(issueAndReturnBookService.viewIssueBooks());
+    }
+
+    @GetMapping("/active")
+    public ResponseEntity<?> viewActiveIssueRecords() {
+        return ResponseEntity.ok(issueAndReturnBookService.viewActiveIssueRecords());
+    }
+
+    @GetMapping("/return/count")
+    public Long getTotalIssuedBooks(){
+        return issueAndReturnBookService.countBooksToBeReturned();
     }
 }

@@ -1,0 +1,56 @@
+#version: '3.8'
+#
+#services:
+#  app:
+#    build: .
+#    ports:
+#      - "8080:8080"
+#    depends_on:
+#      - db
+#    environment:
+#      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/library
+#      SPRING_DATASOURCE_USERNAME: root
+#      SPRING_DATASOURCE_PASSWORD: sqlroot
+#
+#  db:
+#    image: mysql:8
+#    restart: always
+#    environment:
+#      MYSQL_DATABASE: library
+#      MYSQL_ROOT_PASSWORD: sqlroot
+##    ports:
+##      - "3306:3306"
+
+
+version: '3.8'
+
+services:
+  app:
+    build: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/library
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: sqlroot
+    # Optional: add a command to wait for db readiness before starting app
+    # command: ["./wait-for-it.sh", "db:3306", "--", "java", "-jar", "app.jar"]
+
+  db:
+    image: mysql:8
+    restart: always
+    environment:
+      MYSQL_DATABASE: library
+      MYSQL_ROOT_PASSWORD: sqlroot
+      TZ: UTC
+      MYSQL_ROOT_HOST: '%'
+    volumes:
+      - mysql-data:/var/lib/mysql
+    # Uncomment below to expose MySQL port to host (optional)
+    # ports:
+    #   - "3306:3306"
+
+volumes:
+  mysql-data:

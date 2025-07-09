@@ -1,0 +1,97 @@
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #f4f6fb;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+}
+
+#root, .app-layout {
+  height: 100vh;
+  display: flex;
+}
+
+.sidebar {
+  width: 240px;
+  background: #1e293b;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  padding: 32px 0 0 0;
+  box-shadow: 2px 0 12px rgba(30,41,59,0.08);
+}
+
+.sidebar h2 {
+  text-align: center;
+  margin-bottom: 32px;
+  font-size: 1.5rem;
+  letter-spacing: 1px;
+  color: #60a5fa;
+}
+
+.sidebar button {
+  background: none;
+  border: none;
+  color: #fff;
+  text-align: left;
+  padding: 16px 32px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  border-left: 4px solid transparent;
+}
+
+.sidebar button.active, .sidebar button:hover {
+  background: #334155;
+  color: #60a5fa;
+  border-left: 4px solid #60a5fa;
+}
+
+.main-content {
+  flex: 1;
+  padding: 40px 48px;
+  overflow-y: auto;
+}
+
+.dashboard-cards {
+  display: flex;
+  gap: 32px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+
+.dashboard-card {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 2px 12px rgba(30,41,59,0.08);
+  padding: 32px 36px;
+  min-width: 220px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.dashboard-card h3 {
+  margin: 0 0 10px 0;
+  color: #2563eb;
+  font-size: 1.2rem;
+}
+
+.dashboard-card .stat {
+  font-size: 2.2rem;
+  font-weight: bold;
+  color: #1e293b;
+}
+
+@media (max-width: 900px) {
+  .main-content {
+    padding: 20px 6px;
+  }
+  .dashboard-cards {
+    flex-direction: column;
+    gap: 16px;
+  }
+}

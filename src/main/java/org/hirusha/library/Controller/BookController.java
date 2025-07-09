@@ -6,12 +6,14 @@ import org.hirusha.library.Model.Book;
 import org.hirusha.library.Service.BookService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/books")
 @AllArgsConstructor
+@CrossOrigin(origins = "http://localhost:5173")
 public class BookController {
     private final BookService bookService;
 

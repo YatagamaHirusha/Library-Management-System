@@ -62,6 +62,7 @@ public class BookService {
             book.setGenre(request.genre());
             book.setTitle(request.title());
             book.setAuthor(request.author());
+            book.setQuantity(request.quantity());
             return bookRepo.save(book);
         }
         return null;
